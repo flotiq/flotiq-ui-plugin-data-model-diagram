@@ -1,0 +1,387 @@
+/*
+ * Flotiq look: everything maps to flotiq-frontend design tokens (CSS custom properties on :root,
+ * see src/styles/tailwind-base.css) with light-mode fallbacks. Dark mode comes for free because the
+ * editor redefines the same tokens under `.mode-dark`.
+ */
+.fq-dm {
+  --fq-surface: var(--color-surface-base, #ffffff);
+  --fq-surface-subtle: var(--color-surface-subtle, #f4f7fe);
+  --fq-surface-muted: var(--color-surface-muted, #e6edf9);
+  --fq-surface-hover: var(--color-surface-hover, #e6edf9);
+  --fq-line: var(--color-line-default, #dae3f2);
+  --fq-text: var(--color-content-default, #0f172b);
+  --fq-text-muted: var(--color-content-muted, #62748e);
+  --fq-on-accent: var(--color-content-on-accent, #ffffff);
+  --fq-accent: var(--color-accent-default, #1c70e8);
+  --fq-accent-hover: var(--color-accent-default-hover, #1557b5);
+  --fq-accent-subtle: var(--color-accent-subtle-bg, #ceecff);
+  --fq-accent-subtle-text: var(--color-accent-subtle-content, #1557b5);
+  --fq-radius: 8px;
+
+  /* React Flow theming */
+  --xy-background-color: var(--fq-surface-subtle);
+  --xy-background-pattern-color: var(--fq-line);
+  --xy-edge-stroke: var(--fq-text-muted);
+  --xy-edge-stroke-selected: var(--fq-accent);
+  --xy-edge-label-background-color: var(--fq-surface);
+  --xy-edge-label-color: var(--fq-text-muted);
+  --xy-controls-button-background-color: var(--fq-surface);
+  --xy-controls-button-background-color-hover: var(--fq-surface-hover);
+  --xy-controls-button-color: var(--fq-text);
+  --xy-controls-button-border-color: var(--fq-line);
+  --xy-minimap-background-color: var(--fq-surface);
+  --xy-minimap-mask-background-color: color-mix(
+    in srgb,
+    var(--fq-surface-muted) 60%,
+    transparent
+  );
+  --xy-minimap-node-background-color: var(--fq-accent-subtle);
+  --xy-attribution-background-color: transparent;
+
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  min-height: 520px;
+  font-family: inherit;
+  color: var(--fq-text);
+  background: var(--fq-surface);
+  border-radius: var(--fq-radius);
+}
+.fq-dm:fullscreen {
+  height: 100vh;
+}
+.fq-dm .react-flow {
+  font-family: inherit;
+}
+
+/* ---- toolbar ---- */
+.fq-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--fq-line);
+}
+.fq-toolbar__group {
+  display: inline-flex;
+  gap: 4px;
+}
+.fq-toolbar__group + .fq-toolbar__group {
+  padding-left: 12px;
+  border-left: 1px solid var(--fq-line);
+}
+.fq-toolbar__status {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--fq-text-muted);
+}
+.fq-btn {
+  border: 1px solid var(--fq-line);
+  border-radius: var(--fq-radius);
+  background: var(--fq-surface);
+  color: var(--fq-text);
+  padding: 4px 10px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.fq-select {
+  appearance: auto;
+  padding-right: 4px;
+}
+.fq-btn:hover:not(:disabled) {
+  background: var(--fq-surface-hover);
+}
+.fq-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.fq-btn--active {
+  background: var(--fq-accent-subtle);
+  border-color: var(--fq-accent-subtle);
+  color: var(--fq-accent-subtle-text);
+}
+.fq-btn:focus-visible,
+.fq-input:focus-visible,
+.fq-link-btn:focus-visible {
+  outline: 2px solid var(--fq-accent);
+  outline-offset: 1px;
+}
+
+/* ---- layout ---- */
+.fq-dm__body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+.fq-dm__canvas {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---- sidebar ---- */
+.fq-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-right: 1px solid var(--fq-line);
+  font-size: 13px;
+}
+.fq-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--fq-line);
+  border-radius: var(--fq-radius);
+  background: var(--fq-surface);
+  color: var(--fq-text);
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
+}
+.fq-sidebar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fq-link-btn {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--fq-accent);
+  cursor: pointer;
+}
+.fq-muted {
+  margin-left: auto;
+  color: var(--fq-text-muted);
+  font-size: 12px;
+}
+.fq-sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+.fq-sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 4px;
+  border-radius: 6px;
+}
+.fq-sidebar__item:hover {
+  background: var(--fq-surface-hover);
+}
+.fq-sidebar__item input {
+  accent-color: var(--fq-accent);
+  margin: 0;
+}
+.fq-sidebar__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--fq-text);
+  cursor: pointer;
+}
+.fq-sidebar__item--hidden .fq-sidebar__label {
+  color: var(--fq-text-muted);
+  cursor: default;
+}
+.fq-sidebar__count {
+  font-size: 12px;
+  color: var(--fq-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- entity node ---- */
+.fq-node {
+  min-width: 220px;
+  max-width: 340px;
+  background: var(--fq-surface);
+  border: 1px solid var(--fq-line);
+  border-radius: var(--fq-radius);
+  box-shadow: 0 1px 3px color-mix(in srgb, #000 10%, transparent);
+  font-size: 12px;
+  overflow: hidden;
+  transition: opacity 0.15s;
+}
+.fq-node--dimmed {
+  opacity: 0.3;
+}
+.fq-node--highlighted {
+  outline: 3px solid var(--fq-accent);
+  outline-offset: 2px;
+}
+.react-flow__node.selected .fq-node {
+  border-color: var(--fq-accent);
+}
+.fq-node__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 8px 12px;
+  background: var(--fq-accent);
+  color: var(--fq-on-accent);
+}
+.fq-node--stub .fq-node__header {
+  background: var(--fq-surface-muted);
+  color: var(--fq-text-muted);
+}
+.fq-node__title {
+  flex: 1;
+  min-width: 0;
+  font-weight: 700;
+  font-size: 13px;
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+a.fq-node__title:hover,
+a.fq-node__count:hover {
+  text-decoration: underline;
+}
+.fq-node__count {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--fq-on-accent) 22%, transparent);
+  color: inherit;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+}
+.fq-node__hide {
+  border: 0;
+  background: none;
+  color: inherit;
+  opacity: 0.7;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+  cursor: pointer;
+}
+.fq-node__hide:hover {
+  opacity: 1;
+}
+.fq-node__api-name {
+  padding: 2px 12px;
+  font-size: 11px;
+  color: var(--fq-text-muted);
+  background: var(--fq-surface-subtle);
+  border-bottom: 1px solid var(--fq-line);
+}
+.fq-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-top: 1px solid var(--fq-line);
+}
+.fq-field:nth-child(even) {
+  background: var(--fq-surface-subtle);
+}
+.fq-field--nested {
+  padding-left: 24px;
+}
+.fq-field__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fq-field__badges {
+  display: inline-flex;
+  gap: 3px;
+}
+.fq-badge {
+  padding: 0 4px;
+  border-radius: 4px;
+  background: var(--fq-surface-muted);
+  color: var(--fq-text-muted);
+  font-size: 10px;
+}
+.fq-field__type {
+  color: var(--fq-text-muted);
+  white-space: nowrap;
+}
+.fq-field__type--relation {
+  color: var(--fq-accent);
+  font-weight: 600;
+}
+.fq-handle {
+  opacity: 0;
+  pointer-events: none;
+}
+.fq-handle--field {
+  right: 0;
+}
+
+/* ---- edges ---- */
+.fq-dm .react-flow__edge.fq-edge path {
+  stroke-width: 1.5;
+}
+.fq-dm .react-flow__edge.fq-edge--active path {
+  stroke: var(--fq-accent);
+  stroke-width: 2.5;
+}
+.fq-dm .react-flow__edge.fq-edge--muted {
+  opacity: 0.2;
+}
+.fq-minimap {
+  border: 1px solid var(--fq-line);
+  border-radius: var(--fq-radius);
+  overflow: hidden;
+}
+
+/* ---- plugin settings ("Manage" modal) ---- */
+.fq-dm.fq-settings {
+  display: block;
+  height: auto;
+  min-height: 0;
+  background: transparent;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.fq-settings h3 {
+  margin: 16px 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.fq-settings p,
+.fq-settings ul {
+  margin: 0 0 8px;
+}
+.fq-settings ul {
+  padding-left: 20px;
+  list-style: disc;
+}
+.fq-settings a {
+  color: var(--fq-accent);
+}
+.fq-settings__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 16px;
+}
+.fq-settings__muted {
+  color: var(--fq-text-muted);
+  font-size: 13px;
+}

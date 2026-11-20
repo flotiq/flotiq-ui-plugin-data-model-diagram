@@ -1,0 +1,33 @@
+# Changelog
+
+All notable changes to this project are documented in this file. The format is based on
+[Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to
+[Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.3.0] - 2026-11-20
+
+### Added
+
+- Plugin settings ("Manage" in Plugins): description, saved layout info, "Remove saved layout".
+- ⚙ toolbar button opening the Plugins page.
+- GitHub Pages deployment and GitHub release on every push to `main`.
+
+### Changed
+
+- Plugin id `flotiq.data-model-diagram`, production URL on GitHub Pages; in watch mode the served manifest points at
+  `https://localhost:3053/index.js`.
+- "Auto layout" is a single button (horizontal layout only).
+
+## [0.2.0] - 2026-11-20
+
+### Changed
+
+- Simpler toolbar: "Save layout" / "Load layout" (plugin settings, shared in the space) / "Reset", "Export" menu
+  (PNG, SVG, print), refresh and fullscreen icons. Fit view lives in the canvas controls.
+
+## [0.1.0] - 2026-11-20
+
+### Added
+
+- Interactive data model diagram (React Flow + ELK) on the dashboard: drag, auto layout, hide/show, search, object
+  counts, PNG/SVG/print export, local + shared layout persistence, Flotiq look with dark mode.
