@@ -32,8 +32,11 @@ Flotiq dashboard.
 2. Paste the manifest URL and add the plugin:
 
    ```
-   https://trzcina.github.io/flotiq-ui-plugin-data-model-diagram/plugin-manifest.json
+   https://plugins.flotiq.com/files/flotiq.data-model-diagram/0.3.1/plugin-manifest.json
    ```
+
+   The package is served by the Flotiq plugin marketplace (`plugins.flotiq.com`, one of the editor's allowed plugin
+   hosts). It is deployed there as a draft, so it is not listed in the plugin library.
 
 3. Open the **Dashboard**. The diagram is the **Data model diagram** section. You can reorder or hide it in the
    dashboard's edit mode.
@@ -95,10 +98,17 @@ plugins/
 
 ## Releases
 
-Every push to `main` builds the plugin and:
+Every push to `main` builds the plugin and creates a GitHub release with a `<version>.tar.gz` package, tagged with
+the manifest version. The production manifest's `url` is
+`https://plugins.flotiq.com/files/<id>/<version>/index.js` (set by `esbuild.config.js`).
 
-- deploys `dist/` to GitHub Pages, which serves the manifest URL above;
-- creates a GitHub release with a `<version>.tar.gz` package, tagged with the manifest version.
+To ship a version, set **Plugin version package URL** of the plugin's object in the marketplace space to
+`https://github.com/trzcina/flotiq-ui-plugin-data-model-diagram/releases/download/<version>/<version>.tar.gz` and
+save it as a draft. Do not publish it or tick **Is system plugin**. Both would make the plugin available to every
+Flotiq account.
+
+`dist/` is also deployed to GitHub Pages, but the editor only loads plugins from allowed hosts, so that copy is not
+used for installation.
 
 Bump `version` in **both** `package.json` and `plugin-manifest.json` and add a `CHANGELOG.md` entry. Pull requests
 check this.

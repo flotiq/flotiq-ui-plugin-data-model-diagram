@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file. The format is b
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2026-11-23
+
+### Changed
+
+- The production manifest `url` points at the Flotiq plugin marketplace
+  (`https://plugins.flotiq.com/files/flotiq.data-model-diagram/<version>/index.js`). GitHub Pages is not an allowed
+  plugin host in the editor.
+
 ## [0.3.0] - 2026-11-20
 
 ### Added

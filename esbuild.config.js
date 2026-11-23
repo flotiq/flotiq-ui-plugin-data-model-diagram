@@ -63,7 +63,8 @@ const context = await esbuild.context({
 
   plugins: [
     // Write dist/plugin-manifest.json. In dev (watch) mode it points at the local bundle, so the plugin can be
-    // installed from https://localhost:3053/plugin-manifest.json; the production build keeps the GitHub Pages URL.
+    // installed from https://localhost:3053/plugin-manifest.json. The production build points at the Flotiq plugin
+    // marketplace, which serves the released package at /files/<id>/<version>/ and keeps the manifest as is.
     {
       name: 'plugin-manifest',
       setup(build) {
@@ -71,7 +72,9 @@ const context = await esbuild.context({
           const manifest = JSON.parse(
             fs.readFileSync('./plugin-manifest.json', 'utf8'),
           );
-          if (watch) manifest.url = 'https://localhost:3053/index.js';
+          manifest.url = watch
+            ? 'https://localhost:3053/index.js'
+            : `https://plugins.flotiq.com/files/${manifest.id}/${manifest.version}/index.js`;
           fs.mkdirSync('dist', { recursive: true });
           fs.writeFileSync(
             'dist/plugin-manifest.json',
