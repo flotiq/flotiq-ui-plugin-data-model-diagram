@@ -32,7 +32,7 @@ Flotiq dashboard.
 2. Paste the manifest URL and add the plugin:
 
    ```
-   https://plugins.flotiq.com/files/flotiq.data-model-diagram/0.3.1/plugin-manifest.json
+   https://plugins.flotiq.com/files/flotiq.data-model-diagram/0.3.2/plugin-manifest.json
    ```
 
    The package is served by the Flotiq plugin marketplace (`plugins.flotiq.com`, one of the editor's allowed plugin
