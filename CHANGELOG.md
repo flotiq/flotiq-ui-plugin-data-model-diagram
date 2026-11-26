@@ -4,15 +4,12 @@ All notable changes to this project are documented in this file. The format is b
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.4.0] - 2026-11-26
+## [0.4.1] - 2026-11-26
 
 ### Changed
 
-- The diagram moved from the dashboard to its own page: **Data model** in the sidebar, below Plugins
-  (`flotiq.sidebar.menu-item::add` and `flotiq.plugin.page::render`). The diagram fills the page height.
 - Dependencies: chalk 6.0.1, elkjs 0.12.1, postcss 8.5.33, eslint-config-prettier 10.1.8,
   eslint-plugin-react-hooks 7.1.1 (two fixes in `DiagramApp.jsx` for its new `set-state-in-effect` and `use-memo` rules).
-- Repository links point at `github.com/flotiq/flotiq-ui-plugin-data-model-diagram`.
 - Screenshots show the sidebar page.
 
 ### Fixed
@@ -21,8 +18,13 @@ All notable changes to this project are documented in this file. The format is b
   `validation.relationMultiple`.
 - The relation counter in the toolbar counts only relations between the types shown in the diagram.
 
-### Notes
+## [0.4.0] - 2026-11-26
 
+### Changed
+
+- The diagram moved from the dashboard to its own page: **Data model** in the sidebar, below Plugins
+  (`flotiq.sidebar.menu-item::add` and `flotiq.plugin.page::render`). The diagram fills the page height.
+- Repository links point at `github.com/flotiq/flotiq-ui-plugin-data-model-diagram`.
 - Requires an editor with plugin sidebar pages. In an older editor the plugin shows nothing, so stay on 0.3.2 there.
 
 ## [0.3.2] - 2026-11-23

@@ -1,6 +1,6 @@
 {
   "name": "flotiq-ui-plugin-data-model-diagram",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "MIT",
   "description": "Interactive diagram of your Content Type Definitions, their fields and relations — with search, hiding, auto layout, saved layouts, object counts and PNG/SVG/print export. Opens from the sidebar as a separate page.",
   "type": "module",
