@@ -13,6 +13,8 @@ opened from the Flotiq sidebar.
 
 - **Every content type as a card** with its fields: types, relation targets (`→ author`, `→ category[]` for multiple),
   `req` / `UK` / `T` badges (required, unique, title field). Nested list fields are shown indented.
+- **Your types, plus media and tags** (**Media & tags** in the toolbar), like elsewhere in the editor. Other system
+  types (`_plugin_settings`, `_webhooks`…) are left out.
 - **Relations as edges**, drawn from the relation field to the target type. Hover a card to highlight its relations.
 - **Object counts** per type. Click the count to open the objects, click the title to open the definition.
 - **Layout:** drag cards, **Auto layout** (ELK), zoom / fit view, minimap, fullscreen.
@@ -32,7 +34,7 @@ opened from the Flotiq sidebar.
 2. Paste the manifest URL and add the plugin:
 
    ```
-   https://plugins.flotiq.com/files/flotiq.data-model-diagram/0.4.1/plugin-manifest.json
+   https://plugins.flotiq.com/files/flotiq.data-model-diagram/0.4.2/plugin-manifest.json
    ```
 
    The package is served by the Flotiq plugin marketplace (`plugins.flotiq.com`, one of the editor's allowed plugin

@@ -1,19 +1,34 @@
-import { extractContentTypes } from './model';
+import { SHOWN_SYSTEM_TYPES, extractContentTypes } from './model';
 
 const PAGE_LIMIT = 100;
 const COUNT_CONCURRENCY = 4;
 
-/** All CTDs (paginated, de-duplicated by name). */
+/**
+ * The user's CTDs plus media and tags, like elsewhere in the editor. Filtered by the API:
+ * `internal: false` (paginated) and `names` for the two system types. De-duplicated by name.
+ */
 export async function loadContentTypes(client) {
   const byName = new Map();
   for (let page = 1; page < 50; page++) {
     const { data, totalPages } = extractContentTypes(
-      await client.getContentTypes({ limit: PAGE_LIMIT, page }),
+      await client.getContentTypes({
+        limit: PAGE_LIMIT,
+        page,
+        internal: 'false',
+      }),
     );
     data.forEach((ctd) => byName.set(ctd.name, ctd));
     if (totalPages === null || page >= totalPages || data.length < PAGE_LIMIT)
       break;
   }
+  const { data: systemTypes } = extractContentTypes(
+    await client.getContentTypes({
+      limit: SHOWN_SYSTEM_TYPES.length,
+      page: 1,
+      names: SHOWN_SYSTEM_TYPES,
+    }),
+  );
+  systemTypes.forEach((ctd) => byName.set(ctd.name, ctd));
   return [...byName.values()];
 }
 
