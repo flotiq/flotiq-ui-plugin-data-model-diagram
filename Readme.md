@@ -107,7 +107,7 @@ the manifest version. The production manifest's `url` is
 `https://plugins.flotiq.com/files/<id>/<version>/index.js` (set by `esbuild.config.js`).
 
 To ship a version, set **Plugin version package URL** of the plugin's object in the marketplace space to
-`https://github.com/trzcina/flotiq-ui-plugin-data-model-diagram/releases/download/<version>/<version>.tar.gz` and
+`https://github.com/flotiq/flotiq-ui-plugin-data-model-diagram/releases/download/<version>/<version>.tar.gz` and
 save it as a draft. Do not publish it or tick **Is system plugin**. Both would make the plugin available to every
 Flotiq account.
 

@@ -10,6 +10,7 @@ All notable changes to this project are documented in this file. The format is b
 
 - The diagram moved from the dashboard to its own page: **Data model** in the sidebar, below Plugins
   (`flotiq.sidebar.menu-item::add` and `flotiq.plugin.page::render`). The diagram fills the page height.
+- Repository links point at `github.com/flotiq/flotiq-ui-plugin-data-model-diagram`.
 - Requires an editor with plugin sidebar pages. In an older editor the plugin shows nothing, so stay on 0.3.2 there.
 
 ## [0.3.2] - 2026-11-23
