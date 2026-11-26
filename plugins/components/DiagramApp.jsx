@@ -93,10 +93,10 @@ function Diagram({ client, globals, pluginInfo }) {
   useEffect(() => {
     let cancelled = false;
     const abort = new AbortController();
-    setError(null);
     loadContentTypes(client)
       .then((contentTypes) => {
         if (cancelled) return;
+        setError(null);
         const nextModel = buildModel(contentTypes);
         const saved =
           readLocalLayout(pluginInfo.id) || readTeamLayout(globals) || {};
@@ -120,7 +120,7 @@ function Diagram({ client, globals, pluginInfo }) {
     };
   }, [client, globals, pluginInfo.id, reloadKey]);
 
-  const spaceSlug = useMemo(getSpaceSlug, []);
+  const spaceSlug = useMemo(() => getSpaceSlug(), []);
   const hideNode = useCallback(
     (name) => setHidden((prev) => new Set(prev).add(name)),
     [],
@@ -444,7 +444,10 @@ function Diagram({ client, globals, pluginInfo }) {
         key: 'refresh',
         label: '⟳',
         title: 'Reload content types and counts',
-        onClick: () => setReloadKey((k) => k + 1),
+        onClick: () => {
+          setError(null);
+          setReloadKey((k) => k + 1);
+        },
       },
       {
         key: 'settings',
