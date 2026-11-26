@@ -1,10 +1,10 @@
 {
   "id": "flotiq.data-model-diagram",
   "name": "Data model diagram",
-  "description": "Interactive diagram of your Content Type Definitions, their fields and relations — with search, hiding, auto layout, saved layouts, object counts and PNG/SVG/print export. Shown on the dashboard.",
-  "version": "0.3.2",
+  "description": "Interactive diagram of your Content Type Definitions, their fields and relations — with search, hiding, auto layout, saved layouts, object counts and PNG/SVG/print export. Opens from the sidebar as a separate page.",
+  "version": "0.4.0",
   "repository": "https://github.com/trzcina/flotiq-ui-plugin-data-model-diagram",
-  "url": "https://plugins.flotiq.com/files/flotiq.data-model-diagram/0.3.2/index.js",
+  "url": "https://plugins.flotiq.com/files/flotiq.data-model-diagram/0.4.0/index.js",
   "permissions": [
     { "type": "CTD", "ctdName": "*", "canRead": true },
     { "type": "CO", "ctdName": "*", "canRead": true },

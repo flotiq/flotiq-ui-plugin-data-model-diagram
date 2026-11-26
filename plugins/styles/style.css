@@ -40,8 +40,9 @@
 
   display: flex;
   flex-direction: column;
-  height: 75vh;
-  min-height: 520px;
+  /* fills the plugin page below the editor's top bar and page header */
+  height: calc(100dvh - 115px);
+  min-height: 480px;
   font-family: inherit;
   color: var(--fq-text);
   background: var(--fq-surface);
