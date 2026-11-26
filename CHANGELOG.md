@@ -4,6 +4,20 @@ All notable changes to this project are documented in this file. The format is b
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2026-11-26
+
+### Changed
+
+- Dependencies: chalk 6.0.1, elkjs 0.12.1, postcss 8.5.33, eslint-config-prettier 10.1.8,
+  eslint-plugin-react-hooks 7.1.1 (two fixes in `DiagramApp.jsx` for its new `set-state-in-effect` and `use-memo` rules).
+- Screenshots show the sidebar page.
+
+### Fixed
+
+- Single relations are no longer shown as lists (`→ category[]`): multiplicity is read from
+  `validation.relationMultiple`.
+- The relation counter in the toolbar counts only relations between the types shown in the diagram.
+
 ## [0.4.0] - 2026-11-26
 
 ### Changed

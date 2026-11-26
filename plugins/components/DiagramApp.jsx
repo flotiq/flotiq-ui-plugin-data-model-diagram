@@ -93,10 +93,10 @@ function Diagram({ client, globals, pluginInfo }) {
   useEffect(() => {
     let cancelled = false;
     const abort = new AbortController();
-    setError(null);
     loadContentTypes(client)
       .then((contentTypes) => {
         if (cancelled) return;
+        setError(null);
         const nextModel = buildModel(contentTypes);
         const saved =
           readLocalLayout(pluginInfo.id) || readTeamLayout(globals) || {};
@@ -120,7 +120,7 @@ function Diagram({ client, globals, pluginInfo }) {
     };
   }, [client, globals, pluginInfo.id, reloadKey]);
 
-  const spaceSlug = useMemo(getSpaceSlug, []);
+  const spaceSlug = useMemo(() => getSpaceSlug(), []);
   const hideNode = useCallback(
     (name) => setHidden((prev) => new Set(prev).add(name)),
     [],
@@ -444,7 +444,10 @@ function Diagram({ client, globals, pluginInfo }) {
         key: 'refresh',
         label: '⟳',
         title: 'Reload content types and counts',
-        onClick: () => setReloadKey((k) => k + 1),
+        onClick: () => {
+          setError(null);
+          setReloadKey((k) => k + 1);
+        },
       },
       {
         key: 'settings',
@@ -462,12 +465,20 @@ function Diagram({ client, globals, pluginInfo }) {
     ],
   ];
 
+  // relations between the types shown in the diagram (hidden and system types are left out)
+  const shownTypes = new Set(
+    sidebarEntities.filter((e) => !hidden.has(e.name)).map((e) => e.name),
+  );
+  const shownRelations = (model?.relations || []).filter(
+    (r) => shownTypes.has(r.from) && shownTypes.has(r.to),
+  ).length;
+
   const status = error
     ? `Error: ${error}`
     : !model
       ? 'Loading content types…'
       : notice ||
-        `${sidebarEntities.length - hidden.size} of ${sidebarEntities.length} types · ${model.relations.length} relations`;
+        `${sidebarEntities.length - hidden.size} of ${sidebarEntities.length} types · ${shownRelations} relations`;
 
   return (
     <div ref={rootRef} className={`fq-dm${darkMode ? ' fq-dm--dark' : ''}`}>
