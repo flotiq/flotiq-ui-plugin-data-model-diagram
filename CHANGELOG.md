@@ -13,6 +13,16 @@ All notable changes to this project are documented in this file. The format is b
 - Dependencies: chalk 6.0.1, elkjs 0.12.1, postcss 8.5.33, eslint-config-prettier 10.1.8,
   eslint-plugin-react-hooks 7.1.1 (two fixes in `DiagramApp.jsx` for its new `set-state-in-effect` and `use-memo` rules).
 - Repository links point at `github.com/flotiq/flotiq-ui-plugin-data-model-diagram`.
+- Screenshots show the sidebar page.
+
+### Fixed
+
+- Single relations are no longer shown as lists (`→ category[]`): multiplicity is read from
+  `validation.relationMultiple`.
+- The relation counter in the toolbar counts only relations between the types shown in the diagram.
+
+### Notes
+
 - Requires an editor with plugin sidebar pages. In an older editor the plugin shows nothing, so stay on 0.3.2 there.
 
 ## [0.3.2] - 2026-11-23
