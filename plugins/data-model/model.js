@@ -41,7 +41,9 @@ function parseFields(
       const target = config.validation?.relationContenttype;
       field.relation = {
         target: target || ANY_TYPE,
-        multiple: config.multiple !== false,
+        // Flotiq stores it in validation.relationMultiple; a missing flag means multiple
+        multiple:
+          (config.validation?.relationMultiple ?? config.multiple) !== false,
       };
     }
     fields.push(field);

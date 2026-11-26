@@ -465,12 +465,20 @@ function Diagram({ client, globals, pluginInfo }) {
     ],
   ];
 
+  // relations between the types shown in the diagram (hidden and system types are left out)
+  const shownTypes = new Set(
+    sidebarEntities.filter((e) => !hidden.has(e.name)).map((e) => e.name),
+  );
+  const shownRelations = (model?.relations || []).filter(
+    (r) => shownTypes.has(r.from) && shownTypes.has(r.to),
+  ).length;
+
   const status = error
     ? `Error: ${error}`
     : !model
       ? 'Loading content types…'
       : notice ||
-        `${sidebarEntities.length - hidden.size} of ${sidebarEntities.length} types · ${model.relations.length} relations`;
+        `${sidebarEntities.length - hidden.size} of ${sidebarEntities.length} types · ${shownRelations} relations`;
 
   return (
     <div ref={rootRef} className={`fq-dm${darkMode ? ' fq-dm--dark' : ''}`}>
