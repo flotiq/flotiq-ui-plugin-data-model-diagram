@@ -4,6 +4,15 @@ All notable changes to this project are documented in this file. The format is b
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.2] - 2026-11-26
+
+### Changed
+
+- Of the system types only media (`_media`) and tags (`_tag`) are shown, like in the rest of the editor (relations,
+  API keys, all objects). The toolbar toggle is now **Media & tags**.
+- Content types are filtered by the API (`internal: false` and `names` for `_media`, `_tag`) instead of loading all of
+  them.
+
 ## [0.4.1] - 2026-11-26
 
 ### Changed

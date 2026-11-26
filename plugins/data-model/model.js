@@ -8,6 +8,12 @@ export const ANY_TYPE = '__any_type__';
 
 const isInternalName = (name) => name?.startsWith('_');
 
+// Like the rest of the editor (relations, API keys, all objects): of the system types
+// only media and tags are shown; the others (_plugin_settings, _webhooks...) are left out.
+export const SHOWN_SYSTEM_TYPES = ['_media', '_tag'];
+const isLeftOut = (name, internal) =>
+  (internal || isInternalName(name)) && !SHOWN_SYSTEM_TYPES.includes(name);
+
 function parseFields(
   properties = {},
   propertiesConfig = {},
@@ -71,6 +77,7 @@ function parseFields(
 export function buildModel(contentTypes) {
   const entities = new Map();
   for (const ctd of contentTypes || []) {
+    if (isLeftOut(ctd.name, ctd.internal)) continue;
     const schemaDef = ctd.schemaDefinition || {};
     const meta = ctd.metaDefinition || {};
     const fields = parseFields(
@@ -93,6 +100,7 @@ export function buildModel(contentTypes) {
     for (const field of entity.fields) {
       if (!field.relation) continue;
       const { target, multiple } = field.relation;
+      if (target !== ANY_TYPE && isLeftOut(target, false)) continue;
       if (!entities.has(target)) {
         // Referenced type we couldn't read (e.g. _media, _tag, or "any type").
         entities.set(target, {

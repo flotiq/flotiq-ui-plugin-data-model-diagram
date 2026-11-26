@@ -409,7 +409,8 @@ function Diagram({ client, globals, pluginInfo }) {
       },
       {
         key: 'internal',
-        label: 'System types',
+        label: 'Media & tags',
+        title: 'Show media and tags (the only system types used in relations)',
         active: showInternal,
         onClick: () => setShowInternal((v) => !v),
       },
