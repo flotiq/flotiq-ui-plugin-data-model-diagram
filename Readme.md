@@ -4,10 +4,10 @@
 
 # Data model diagram — Flotiq UI plugin
 
-An interactive diagram of your Flotiq **Content Type Definitions**, their **fields** and **relations**, right on the
-Flotiq dashboard.
+An interactive diagram of your Flotiq **Content Type Definitions**, their **fields** and **relations**, on its own page,
+opened from the Flotiq sidebar.
 
-![Data model diagram on the Flotiq dashboard](docs/screenshot.png)
+![Data model diagram](docs/screenshot.png)
 
 ## Features
 
@@ -32,14 +32,18 @@ Flotiq dashboard.
 2. Paste the manifest URL and add the plugin:
 
    ```
-   https://plugins.flotiq.com/files/flotiq.data-model-diagram/0.3.2/plugin-manifest.json
+   https://plugins.flotiq.com/files/flotiq.data-model-diagram/0.4.0/plugin-manifest.json
    ```
 
    The package is served by the Flotiq plugin marketplace (`plugins.flotiq.com`, one of the editor's allowed plugin
    hosts). It is deployed there as a draft, so it is not listed in the plugin library.
 
-3. Open the **Dashboard**. The diagram is the **Data model diagram** section. You can reorder or hide it in the
-   dashboard's edit mode.
+3. Click **Data model** in the sidebar, below **Plugins**. The diagram opens as a separate page
+   (`/s/<space>/plugins/flotiq.data-model-diagram/data-model`).
+
+Version 0.4.0 needs an editor with plugin sidebar pages (`flotiq.sidebar.menu-item::add`). In an older editor use
+0.3.2, which shows the diagram as a dashboard section:
+`https://plugins.flotiq.com/files/flotiq.data-model-diagram/0.3.2/plugin-manifest.json`.
 
 ### Permissions
 
@@ -71,8 +75,8 @@ Accept the self-signed certificate by opening `https://localhost:3053/index.js` 
 
 ### How it works
 
-- Placement: `flotiq.dashboard.section::add`. The Flotiq plugin API has no menu or page hook. The settings screen
-  uses `flotiq.plugins.manage::render`.
+- Placement: `flotiq.sidebar.menu-item::add` adds the **Data model** item, `flotiq.plugin.page::render` renders the
+  page (`pageId` `data-model`). The settings screen uses `flotiq.plugins.manage::render`.
 - Stack: React 19, [React Flow](https://reactflow.dev) (`@xyflow/react` 12), [ELK](https://eclipse.dev/elk/) for
   auto layout, `html-to-image` for export. esbuild bundles everything into a single `dist/index.js` with the CSS
   inlined, because Flotiq loads only the JS file.
@@ -81,7 +85,7 @@ Accept the self-signed certificate by opening `https://localhost:3053/index.js` 
 
 ```
 plugins/
-  index.jsx                 registration, CSS injection, dashboard section, settings screen
+  index.jsx                 registration, CSS injection, sidebar item and page, settings screen
   components/
     DiagramApp.jsx          state, layout, toolbar actions (toolbar is a declarative list of groups)
     EntityNode.jsx          content type card
@@ -103,7 +107,7 @@ the manifest version. The production manifest's `url` is
 `https://plugins.flotiq.com/files/<id>/<version>/index.js` (set by `esbuild.config.js`).
 
 To ship a version, set **Plugin version package URL** of the plugin's object in the marketplace space to
-`https://github.com/trzcina/flotiq-ui-plugin-data-model-diagram/releases/download/<version>/<version>.tar.gz` and
+`https://github.com/flotiq/flotiq-ui-plugin-data-model-diagram/releases/download/<version>/<version>.tar.gz` and
 save it as a draft. Do not publish it or tick **Is system plugin**. Both would make the plugin available to every
 Flotiq account.
 

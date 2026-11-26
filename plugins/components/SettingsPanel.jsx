@@ -49,9 +49,8 @@ export default function SettingsPanel({
 
       <h3>Where to find it</h3>
       <p>
-        Open the <strong>Dashboard</strong> — the diagram is the{' '}
-        <strong>“Data model diagram”</strong> section. You can reorder or hide
-        it in the dashboard’s edit mode.
+        Click <strong>Data model</strong> in the sidebar, below{' '}
+        <strong>Plugins</strong>. The diagram opens as a separate page.
       </p>
 
       <h3>What you can do</h3>

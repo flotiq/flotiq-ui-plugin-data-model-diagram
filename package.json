@@ -1,8 +1,8 @@
 {
   "name": "flotiq-ui-plugin-data-model-diagram",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "license": "MIT",
-  "description": "Interactive diagram of your Content Type Definitions, their fields and relations — with search, hiding, auto layout, saved layouts, object counts and PNG/SVG/print export. Shown on the dashboard.",
+  "description": "Interactive diagram of your Content Type Definitions, their fields and relations — with search, hiding, auto layout, saved layouts, object counts and PNG/SVG/print export. Opens from the sidebar as a separate page.",
   "type": "module",
   "scripts": {
     "build": "node esbuild.config.js",
@@ -33,8 +33,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/trzcina/flotiq-ui-plugin-data-model-diagram.git"
+    "url": "https://github.com/flotiq/flotiq-ui-plugin-data-model-diagram.git"
   },
-  "homepage": "https://github.com/trzcina/flotiq-ui-plugin-data-model-diagram#readme",
+  "homepage": "https://github.com/flotiq/flotiq-ui-plugin-data-model-diagram#readme",
   "private": true
 }
